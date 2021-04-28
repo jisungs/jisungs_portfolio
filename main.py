@@ -4,10 +4,6 @@ import smtplib
 
 app = Flask(__name__)
 
-OWN_EMAIL = "jisungstrong@gmail.com"
-OWN_PASSWORD = "wltjd6230"
-
-
 @app.route('/', methods=["GET", "POST"])
 def main_page():
     if request.method == "POST":
