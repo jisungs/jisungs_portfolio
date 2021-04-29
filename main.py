@@ -21,7 +21,7 @@ def send_email(name, email, phone, message):
     with smtplib.SMTP("smtp.gmail.com") as connection:
         connection.starttls()
         connection.login(os.environ.get("OWN_EMAIL"), os.environ.get("OWN_PASSWORD"))
-        connection.sendmail(os.environ.get("OWN_EMAIL"), os.environ.get("OWN_EMAIL"), email_message)
+        connection.sendmail(email, os.environ.get("OWN_EMAIL"), email_message)
 
 
 if __name__ == "__main__":
