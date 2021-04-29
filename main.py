@@ -5,6 +5,7 @@ import os
 
 app = Flask(__name__)
 
+
 # test line
 @app.route('/', methods=["GET", "POST"])
 def main_page():
@@ -18,10 +19,13 @@ def main_page():
 # send email is not prepared
 def send_email(name, email, phone, message):
     email_message = f"Subject:New Message\n\nName: {name}\nEmail: {email}\nPhone: {phone}\nMessage:{message}"
-    with smtplib.SMTP("smtp.gmail.com") as connection:
+    with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
         connection.starttls()
         connection.login(os.environ.get("OWN_EMAIL"), os.environ.get("OWN_PASSWORD"))
-        connection.sendmail(email, os.environ.get("OWN_EMAIL"), email_message)
+        connection.sendmail(
+            from_addr=email,
+            to_addrs=os.environ.get("OWN_EMAIL"),
+            msg=email_message)
 
 
 if __name__ == "__main__":
