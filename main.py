@@ -4,6 +4,7 @@ import smtplib
 
 app = Flask(__name__)
 
+# test line
 @app.route('/', methods=["GET", "POST"])
 def main_page():
     if request.method == "POST":
