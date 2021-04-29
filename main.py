@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 
 import smtplib
+import os
 
 app = Flask(__name__)
 
@@ -19,8 +20,8 @@ def send_email(name, email, phone, message):
     email_message = f"Subject:New Message\n\nName: {name}\nEmail: {email}\nPhone: {phone}\nMessage:{message}"
     with smtplib.SMTP("smtp.gmail.com") as connection:
         connection.starttls()
-        connection.login(OWN_EMAIL, OWN_PASSWORD)
-        connection.sendmail(OWN_EMAIL, OWN_EMAIL, email_message)
+        connection.login(os.environ.get("OWN_EMAIL"), os.environ.get("OWN_PASSWORD"))
+        connection.sendmail(os.environ.get("OWN_EMAIL"), os.environ.get("OWN_EMAIL"), email_message)
 
 
 if __name__ == "__main__":
