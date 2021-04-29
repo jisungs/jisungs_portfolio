@@ -14,7 +14,7 @@ def main_page():
         return render_template("index.html", msg_sent=True)
     return render_template("index.html", msg_sent=False)
 
-
+# send email is not prepared
 def send_email(name, email, phone, message):
     email_message = f"Subject:New Message\n\nName: {name}\nEmail: {email}\nPhone: {phone}\nMessage:{message}"
     with smtplib.SMTP("smtp.gmail.com") as connection:
